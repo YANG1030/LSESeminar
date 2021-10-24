@@ -1,0 +1,192 @@
+%%%%%%%%% Theorem Environment
+
+%%% Use mdframed
+
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{amsthm}
+
+\usepackage{fontawesome}
+\usepackage{bbding}
+
+% \mdfsetup{skipabove=\topskip,skipbelow=\topskip}
+% \mdfdefinestyle{theoremstyle}{%
+%   outerlinewidth=5pt,innerlinewidth=0pt,
+%   outerlinecolor=gray!40,roundcorner=5pt
+% }
+
+%%% Proof
+
+\renewcommand*{\proofname}{\blue{\textbf{Proof.}}}
+% \renewcommand*{\qedsymbol}{$\mathwitch*$}
+% \renewcommand*{\qedsymbol}{\faCoffee}
+\renewcommand*{\qedsymbol}{\Peace}
+
+%%% Theorem
+\definecolor{Mingu-Red}{RGB}{163, 25, 25}
+\mdfdefinestyle{theoremstyle}{%
+    middlelinewidth=2pt,
+    middlelinecolor=Mingu-Red,
+    %%%%%%%%%
+    linecolor=gray,linewidth=.5pt,%
+    backgroundcolor=gray!10,
+    %%%%%%%%%
+    skipabove=8pt,
+    skipbelow=5pt,
+    %%%%%%%%%
+    innertopmargin=.4\baselineskip,
+    innerbottommargin=.4\baselineskip,
+    innerleftmargin=7pt,
+    innerrightmargin=7pt,
+    %%%%%%%%%
+    frametitlerule=true,%
+    frametitlerulewidth=.5pt,
+    frametitlebackgroundcolor=gray!15,
+    frametitleaboveskip=0pt,
+    frametitlebelowskip=0pt,
+    %%%%%%
+    % shadow=true,shadowsize=3pt,shadowcolor=black!20,
+    theoremseparator={:},
+    roundcorner=5pt,
+}
+
+\mdtheorem[style=theoremstyle]{exercise}{\faThumbTack\; Exercise}[section]
+\mdtheorem[style=theoremstyle]{MDtheorem}{\faGraduationCap\; Theorem}[section]
+\mdtheorem[style=theoremstyle]{proposition}{\faGraduationCap\; Proposition}[section]
+\mdtheorem[style=theoremstyle]{corollary}{\faThumbTack\; Corollary}[section]
+\mdtheorem[style=theoremstyle]{lemma}{\faThumbTack\; Lemma}[section]
+\mdtheorem[style=theoremstyle]{problem}{\faQuestion\; Problem}[section]
+
+%%% 定义theorem environment， 给theorem title加括号
+\newcommand*{\Title}{}
+\newenvironment{theorem}[1][]{%
+    \ifstrempty{#1}{\begin{MDtheorem}}{\begin{MDtheorem}[(#1)]}%
+}{%
+    \end{MDtheorem}%
+}%
+%%%
+\usepackage{lipsum}
+
+\newtheoremstyle{examplestyle}% ⟨name⟩
+{3pt}%⟨Space above⟩
+{3pt}%⟨Space below⟩
+{\upshape}%⟨Body font⟩
+{}%⟨Indent amount⟩
+{\bfseries}% ⟨Theorem head font⟩
+{.}%⟨Punctuation after theorem head⟩
+{.5em}%⟨Space after theorem head⟩2
+{}%⟨Theorem head spec (can be left empty, meaning ‘normal’)⟩
+
+\theoremstyle{examplestyle}
+\newtheorem{myexam}{\HandPencilLeft\; Example}
+\mdfsetup{%
+    middlelinecolor=black,
+    middlelinewidth=0.5pt,
+    backgroundcolor=white,
+    % roundcorner=5pt
+}
+\newenvironment{example}
+  {\begin{mdframed}\begin{myexam}}
+  {\end{myexam}\end{mdframed}}
+
+
+
+\mdfdefinestyle{definitionstyle}{%
+  middlelinewidth=2pt,
+  middlelinecolor=Mingu-Red,
+  %%%%%%%%%
+  linecolor=gray,linewidth=.5pt,%
+  backgroundcolor=white,
+  %%%%%%%%%
+  skipabove=8pt,
+  skipbelow=5pt,
+  %%%%%%%%%
+  innertopmargin=.4\baselineskip,
+  innerbottommargin=.4\baselineskip,
+  innerleftmargin=7pt,
+  innerrightmargin=7pt,
+  %%%%%%%%%
+  frametitlerule=true,%
+  frametitlerulewidth=.5pt,
+  frametitlebackgroundcolor=gray!15,
+  frametitleaboveskip=0pt,
+  frametitlebelowskip=0pt,
+  %%%%%%
+%   shadow=true,shadowsize=3pt,shadowcolor=black!20,
+  theoremseparator={:},
+  roundcorner=5pt
+}
+
+% \mdtheorem[style=lemmastyle]{remark}{$\blacklozenge$ Remark}[section]
+\mdtheorem[style=definitionstyle]{definition}{\faKey\; Definition}[section]
+
+\newtheoremstyle{remarkstyle}% ⟨name⟩
+{3pt}%⟨Space above⟩
+{3pt}%⟨Space below⟩
+{\upshape}%⟨Body font⟩
+{}%⟨Indent amount⟩
+{\bfseries}% ⟨Theorem head font⟩
+{.}%⟨Punctuation after theorem head⟩
+{.5em}%⟨Space after theorem head⟩2
+{}%⟨Theorem head spec (can be left empty, meaning ‘normal’)⟩
+
+\theoremstyle{remarkstyle}
+\newtheorem{remarkx}{\HandRight\; Remark}
+\newenvironment{remark}
+  {\pushQED{\qed}\renewcommand{\qedsymbol}{\PencilLeftDown}\remarkx} % 给 remark 环境定义结束符
+  {\popQED\endremarkx}
+
+% \definecolor{remarkcolor-bk}{RGB}{255,242,242}
+% \definecolor{remarkcolor-line}{RGB}{0,242,12}
+% \theoremstyle{remarkstyle}
+% \newtheorem*{myremark}{Remark}
+% \mdfsetup{%
+%     middlelinecolor=remarkcolor-line,
+%     middlelinewidth=1pt,
+%     backgroundcolor=remarkcolor-bk,
+%     roundcorner=5pt}
+% \newenvironment{remark}
+%   {\begin{mdframed}\begin{myremark}}
+%   {\end{myremark}\end{mdframed}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Use package amsthm
+
+% \usepackage{amsthm}
+% \theoremstyle{plain}
+% \newtheorem{theo}{Theorem}
+% \newtheorem{prop}{Proposition}
+% \newtheorem{lem}{Lemma}
+% \newtheorem{coro}{Corollary}
+
+% \newtheoremstyle{definition}% ⟨name⟩
+% {3pt}%⟨Space above⟩
+% {3pt}%⟨Space below⟩
+% {\itshape}%⟨Body font⟩
+% {}%⟨Indent amount⟩
+% {\bfseries}% ⟨Theorem head font⟩
+% {.}%⟨Punctuation after theorem head⟩
+% {.5em}%⟨Space after theorem head⟩2
+% {}%⟨Theorem head spec (can be left empty, meaning ‘normal’)⟩
+
+% \theoremstyle{definition}
+% \newtheorem{exam}{Example}
+% \newtheorem*{sol*}{Solution}
+% \newtheorem{exer}{Exercise}
+% \newtheorem*{ans*}{Answer}
+% \newtheorem{defi}{Definition}
+
+% \newtheoremstyle{note}% style name
+% {2ex}% above space
+% {2ex}% below space
+% {\small\itshape}% body font
+% {}% indent amount
+% {\normalfont\bfseries}% head font
+% {.}% post head punctuation
+% {1ex}% post head space
+% {}% head spec
+% \theoremstyle{note}
+% \newtheorem{remark}{Remark}
+% \newtheorem*{hint*}{Hint}
+
+

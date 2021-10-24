@@ -1,0 +1,276 @@
+\usepackage[utf8]{inputenc}
+\input{theorem-style}
+%Font
+\usepackage[T1]{fontenc}
+\usepackage{mathpazo}
+%\usepackage{ebgaramond}
+\usepackage{tgpagella}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage[colorlinks,linkcolor=blue]{hyperref}
+\usepackage{IEEEtrantools}
+\usepackage{dsfont}
+
+
+\usepackage{enumitem}%列表环境
+\usepackage[square]{natbib}
+\usepackage{graphicx}
+\usepackage{subfigure}  
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows.meta}
+\usepackage[paper=a4paper,left=30mm,right=20mm,top=25mm,bottom=30mm]{geometry}
+
+\usepackage{arydshln}
+
+\usepackage{marginnote}
+\usepackage{geometry}
+\geometry{a4paper,inner=2cm,outer=2cm,top=2.5cm,bottom=2.5cm,marginparwidth=1.5cm, marginparsep=0.5cm}
+
+%圆圈数字
+\usepackage{tikz}
+\newcommand*{\circled}[1]{\lower.7ex\hbox{\tikz\draw (0pt, 0pt)%
+		circle (.5em) node {\makebox[1em][c]{\small #1}};}}
+
+%行距
+\usepackage{setspace}
+\renewcommand{\baselinestretch}{1.2} 
+
+\newcommand*{\colorboxed}{}
+\def\colorboxed#1#{%
+	\colorboxedAux{#1}%
+}
+\newcommand*{\colorboxedAux}[3]{%
+	% #1: optional argument for color model
+	% #2: color specification
+	% #3: formula
+	\begingroup
+	\colorlet{cb@saved}{.}%
+	\color#1{#2}%
+	\boxed{%
+		\color{cb@saved}%
+		#3%
+	}%
+	\endgroup
+}
+
+\usepackage{fancyhdr} 
+\pagestyle{fancy}
+\newlength\mylen
+\addtolength\mylen{\marginparsep}
+\addtolength\mylen{\marginparwidth}
+%\fancyheadoffset[OR,EL]{\the\mylen}%把headrule延长至右边
+%\fancyfootoffset[OR,EL]{\the\mylen}%把footrule延长至右边
+\usepackage{lastpage}
+\fancyhead[RE,LO]{\thepage \;of \,\pageref{LastPage}}
+\fancyhead[LE,RO]{\textsf{Statistics Seminar (2021 Fall, LSE)}}
+\fancyfoot[LE,RO]{ROUGH DRAFT. DO NOT DISTRIBUTE!}
+\fancyfoot[RE,LO]{\textsf{Latest Updated: \today}}
+\cfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+%Important symbol
+\usepackage{tabto}
+\newcommand\importantsymbol[1][0pt]{%
+	\tabto*{0cm}\makebox[\dimexpr-0.3cm-#1\relax][r]{$\blacktriangleright$}\tabto*{\TabPrevPos}}
+\newcommand\veryimportantsymbol[1][0pt]{%
+	\tabto*{0cm}\makebox[\dimexpr-0.3cm-#1\relax][r]{$\blacktriangleright\blacktriangleright$}\tabto*{\TabPrevPos}}
+\newcommand\veryveryimportantsymbol[1][0pt]{%
+	\tabto*{0cm}\makebox[\dimexpr-0.3cm-#1\relax][r]{$\blacktriangleright\blacktriangleright\blacktriangleright$}\tabto*{\TabPrevPos}}
+%Question symbol
+\newcommand\questionsymbol[1][0pt]{%
+	\tabto*{0cm}\makebox[\dimexpr-0.3cm-#1\relax][r]{?}\tabto*{\TabPrevPos}}
+\newcommand\indep{\protect\mathpalette{\protect\independenT}{\perp}}
+\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
+
+
+\usepackage{amsmath,amssymb,amsfonts,amssymb,amsthm}
+\numberwithin{equation}{section}%公式编号与章节关联
+\usepackage{dsfont}%示性函数
+\allowdisplaybreaks[4]%长公式换页
+\usepackage{bbm}
+\usepackage[us,24hr]{datetime}
+\usepackage{extarrows}%\xlongequal
+\usepackage{IEEEtrantools}
+\usepackage{mathrsfs}%花体字母
+\usepackage{multicol}%分栏
+\usepackage{booktabs}%使三线表首尾线更粗
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+}
+
+\newcommand{\vkl}{\vskip 0.10in}
+\newcommand{\vkL}{\vskip 0.20in}
+\newcommand{\vkU}{\vskip 0.30in}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%自定义符号%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%大写黑体%%%%%%
+\newcommand{\bA}{\mathbf{A}}
+\newcommand{\bB}{\mathbf{B}}
+\newcommand{\bC}{\mathbf{C}}
+\newcommand{\bD}{\mathbf{D}}
+\newcommand{\bE}{\mathbf{E}}
+\newcommand{\bF}{\mathbf{F}}
+\newcommand{\bG}{\mathbf{G}}
+\newcommand{\bH}{\mathbf{H}}
+\newcommand{\bI}{\mathbf{I}}
+\newcommand{\bL}{\mathbf{L}}
+\newcommand{\bO}{\mathbf{O}}
+\newcommand{\bP}{\mathbf{P}}
+\newcommand{\bM}{\mathbf{M}}
+\newcommand{\bN}{\mathbf{N}}
+\newcommand{\bR}{\mathbf{R}}
+\newcommand{\bS}{\mathbf{S}}
+\newcommand{\bT}{\mathbf{T}}
+\newcommand{\bU}{\mathbf{U}}
+\newcommand{\bV}{\mathbf{V}}
+\newcommand{\bW}{\mathbf{W}}
+\newcommand{\bX}{\mathbf{X}}
+%%%%%%小写黑体%%%%%%
+\newcommand{\ba}{\mathbf{a}}
+\newcommand{\bb}{\mathbf{b}}
+\newcommand{\bc}{\mathbf{c}}
+\newcommand{\bd}{\mathbf{d}}
+\newcommand{\be}{\mathbf{e}}
+\newcommand{\bi}{\mathbf{i}}
+\newcommand{\bj}{\mathbf{j}}
+\newcommand{\bp}{\mathbf{p}}
+\newcommand{\bu}{\mathbf{u}}
+\newcommand{\bw}{\mathbf{w}}
+\newcommand{\bv}{\mathbf{v}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\by}{\mathbf{y}}
+\newcommand{\bz}{\mathbf{z}}
+%%%%%%空心%%%%%%
+\newcommand{\bbR}{\mathbb{R}}
+\newcommand{\bbQ}{\mathbb{Q}}
+\newcommand{\bbZ}{\mathbb{Z}}
+\newcommand{\bbC}{\mathbb{C}}
+%%%%%%花体%%%%%%
+\newcommand{\calA}{\mathcal{A}}
+\newcommand{\calB}{\mathcal{B}}
+\newcommand{\calC}{\mathcal{C}}
+\newcommand{\calD}{\mathcal{D}}
+\newcommand{\calM}{\mathcal{M}}
+\newcommand{\calN}{\mathcal{N}}
+\newcommand{\calT}{\mathcal{T}}
+\newcommand{\calV}{\mathcal{V}}
+%%%%%%符号%%%%%%
+\newcommand{\Prob}{\mathbb{P}}
+\newcommand{\Expe}{\mathsf{E}\,}
+\newcommand{\Var}{\mathsf{Var}}
+\newcommand{\Cov}{\mathsf{Cov}}
+\newcommand{\rank}{\mathsf{rank}}
+\newcommand{\tr}{\mathsf{tr}}
+\newcommand{\sign}{\mathsf{sign}}
+\newcommand{\diag}{\mathsf{diag}}
+\newcommand{\res}{\mathsf{Res}}
+\newcommand{\spt}{\mathrm{spt}}
+\newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
+%\renewcommand{\Re}{\mathsf{Re}}
+%\renewcommand{\Im}{\mathsf{Im}}
+\newcommand{\st}{\mathrm{s.t.}}
+\newcommand{\io}{\mathrm{i.o.}}
+\newcommand{\ult}{\mathrm{ult.}}
+\newcommand{\md}{\mathrm{d}}
+\newcommand*{\dif}{\mathop{}\!\mathrm{d}}%微分算子
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}%norm
+\newcommand{\wc}{\overset{\mathsf{w}}{\longrightarrow}}
+%\newcommand{\<}{\langle}
+%\newcommand{\>}{\rangle}
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+\newcommand{\He}{\mathsf{H}}
+\DeclareMathOperator{\as}{a.s.}
+\renewcommand{\bar}{\overline}
+\newcommand{\Range}{\mathrm{Range}}
+\DeclareMathOperator{\spn}{span}
+\newcommand{\indicator}{\mathds{1}}
+%inner product notation:	
+%Ref: https://tex.stackexchange.com/questions/309026/how-to-define-an-inner-product-argument-in-latex
+\usepackage{mathtools}
+\DeclarePairedDelimiterX{\inp}[2]{\langle}{\rangle}{#1, #2}%inner product
+%augmented matrix
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{#1}}
+\makeatother
+%%%%%%颜色%%%%%%
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%定理环境%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\theoremstyle{definition}
+\newtheorem{exmp}{Example}[section]
+%\newtheorem{theorem}{Theorem}[section]
+%\newtheorem{corollary}[theorem]{Corollary}
+%\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{proposition}[theorem]{Proposition}
+%\newtheorem{remark}[theorem]{Remark}
+%\newtheorem{definition}[theorem]{Definition}
+%\newtheorem{property}[theorem]{Property}
+\let\emph\relax % there's no \RedeclareTextFontCommand
+\DeclareTextFontCommand{\emph}{\bfseries\em}
+
+\newenvironment{dedication}
+{\clearpage           % we want a new page
+	\thispagestyle{empty}% no header and footer
+	\vspace*{\stretch{1}}% some space at the top 
+	\itshape             % the text is in italics
+	%\raggedleft          % flush to the right margin
+	\centering
+}
+{\par % end the paragraph
+	\vspace{\stretch{3}} % space at bottom is three times that at the top
+	\clearpage           % finish off the page
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Title Page%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}} 	% Horizontal rule
+
+\makeatletter							% Title
+\def\printtitle{%						
+	{\centering \@title\par}}
+\makeatother									
+
+\title{	
+	\normalsize \textit{London School of Economics and Political Science}	% Subtitle
+	\\[2.0cm]								% 2cm spacing
+	\HRule{1pt} \\						% Upper rule
+	\LARGE {{\bfseries\itshape Lecture Notes for Statistics Seminar}\\ 
+		\normalsize{\scshape 2021 Fall}}	% Title
+	\HRule{2pt} \\ [1cm]		% Lower rule + 0.5cm spacing
+	\normalsize(Scribed and Edited by {\scshape YANG Xuzhi})
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Chapter Format%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{titlesec}
+
+\titleformat
+{\chapter} % command
+[display] % shape
+{\bfseries\LARGE\itshape} % format
+{Lecture  \thechapter} % label
+{0.5ex} % sep
+{
+	\rule{\textwidth}{1pt}
+	\vspace{1ex}
+	\centering
+} % before-code
+[
+\vspace{-0.5ex}%
+\rule{\textwidth}{0.3pt}
+] % after-code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\date{\textsc{Lastest Updated}:\quad\today,\; \currenttime}

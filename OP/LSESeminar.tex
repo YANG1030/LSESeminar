@@ -1,0 +1,30 @@
+\documentclass[a4,11pt,openright]{book}
+\input{preamble.tex}
+
+\begin{document}
+
+    \maketitle
+    \clearpage
+%  	\begin{dedication}
+%  		{\Large To my beloved Yueran.}
+%  	\end{dedication}
+    \clearpage
+    \tableofcontents
+    \thispagestyle{empty}
+    \setcounter{page}{1}
+    \pagenumbering{Roman}
+    
+	\input{CH/Preli.tex}
+	\input{CH/Chernozhukov2017.tex}
+	\input{CH/Deb2019.tex}
+
+
+     \phantomsection 
+     \addcontentsline{toc}{chapter}{Bibliography} 
+     \bibliographystyle{plainnat}
+     \bibliography{reference.bib}
+    
+\end{document}
+
+
+

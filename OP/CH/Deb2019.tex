@@ -1,0 +1,123 @@
+\chapter{Optimal Transport and Its Application on Statistical Methods (Deb et al. 2021)}
+\section{Motivation}
+Based on \cite{chernozhukov2017monge}
+\section{Contributions}
+The main contributions in this work are listed as followed:
+\begin{enumerate}
+	\item[(I)] Construct a novel definition of multivariate rank and quantile from the perspective of assignment problem, based on optimal transport technique, ands lead to exact distribution-free, computing feasible testing procedures
+	\item[(II)] A holistic idea is developed to construct multivariate rank-based distribution-free test.
+\end{enumerate}
+
+\section{Definition of Multivariate Rank Based on OT.}
+
+The pioneering work of \cite{chernozhukov2017monge} has developed novel difinitions of multivariate rank and quantile based on the mathematical solution for \textit{Kantorovich's Problem}. However, from the statistical perspective, we usually only care about the measure transportation between the empirical distribution and the empirical rank distribution, which will lead to a Monge's Problem. Thus the measure transportation can be thought as an assignment problem instead. 
+
+\subsection{Population rank and quantile}
+
+\subsection{Empirical rank and quantile}
+In standard statistical applications, the population rank map is not available to the practitioner. Thus, given iid random samples $\mathcal{D}_n^X :=\{\bf{X}_1, \dots, \bf{X}_n\}$, and let $ \mathcal{H}_n^d:=\{\bf{h}_1^d, \dots, \bf{h}_n^d\}$ denote the fixed set of sample \textit{multivariate rank vectors}. In practice, we may take $\mathcal{H}_n^d$ to be the $d$-dimensional {\bf Halton sequence} of size $n$. Let $\mu_n^{\bf{X}}$ and $\nu_n$ denote the empirical distribution of $\mathcal{D}_n^X$ and $\mathcal{H}_n^d$, respectively. 
+
+\begin{definition}
+	We define the empirical rank function $\hat{\bf R}_n: \mathcal{D}_n^X \to \mathcal{H}_n^d$ as the optimal transport map which pushes $\mu_n^{\bf X}$ to $\nu_n$, that is, 
+	\begin{IEEEeqnarray}{rCl}
+		\hat{\bf R}_n = \arg\inf\limits_{F} \int ||{\bf X} - F({\bf X})||^2\mathrm{d} {\mu}_n^{ \bf X}, \quad \text{subject to} \ F\#\mu_n^{\bf X} = \nu_n \label{eq: MongeEmpir}
+	\end{IEEEeqnarray}
+\end{definition}
+\begin{remark}
+	Note that by $F$ pushes $\mu$ to $\nu$, we mean that $F(\mathbf{X}) \sim \nu$, where $\mathbf{X} \sim \nu$. Thus (\ref{eq: MongeEmpir}) can be rewritten as 
+	\begin{IEEEeqnarray}{rCl}
+		\hat{\bf \sigma}_n = \arg\inf\limits_{\sigma \in \mathcal{S}_n}\frac{1}{n}\sum_{i = 1}^n ||{\bf X}_i - \mathbf{h}_{\sigma(i)}^d||^2. \label{eq: assignment}
+	\end{IEEEeqnarray}
+The optimization problem (\ref{eq: assignment}) allows us to view it as an \textcolor{magenta}{assignment problem} for which algorithms with worst case complexity $\mathcal{O}(n^3)$.
+\end{remark}
+
+
+\section{Pointwise Convergence}
+Based on (\ref{eq: assignment}), observe that the sample rank map $\hat{\bf R}_n$ satisfies
+\[
+\hat{\bf R}_n({\bf X}_i) = \mathbf{h}^d_{\hat{\sigma}_n(i)},  \quad \ \text{for } \ i = 1, \dots, n,
+\]
+and the following theorem shows that the sample rank map converges to its population counterpart under minimal assumptions. 
+\begin{theorem}
+	Assume $\mathbf{X}_1, \dots, \mathbf{X}_n \stackrel{iid}\sim \mu \in \mathcal{P}_{ac}^d$, and $\nu_n \stackrel{w}\to \mathcal{U}^d$, then
+	\begin{IEEEeqnarray}{rCl}
+		\frac{1}{n}\sum_{i = 1}^n ||\hat{\bf R}_n({\bf X}_i) - {\bf R}_n({\bf X}_i)||_{2}^2 \stackrel{a.s.}\to 0 \nonumber
+	\end{IEEEeqnarray}
+\end{theorem}
+\begin{remark}
+	
+\end{remark}
+
+\section{Multivariate Rank-Based Nonparametric Testing}
+\subsection{Rank distance covariance (mutual independence testing)}
+\textcolor{violet}{\textbf{Part I: Measure}} 
+
+Suppose that $Z_1$ and $Z_2$ are real-valued absolutely continuous random variables with distribution function $G_1(\cdot)$ and $G_2(\cdot)$. It can be prove that $Z_1 \indep Z_2$ iff. $G_1(Z_1) \indep G_{2}(Z_2)$. Thus, it is natural to establish the following measure of dependence:
+\begin{IEEEeqnarray}{rCl}
+		\mathcal{R}_{w}& := & \iint \mid \Expe \exp \left(i G_{t, s}(\mathbf{Z})\right) \nonumber \\
+		&&-\left.\Expe \exp \left(i t G_{1}\left(Z_{1}\right)\right) \Expe \exp \left(i s G_{2}\left(Z_{2}\right)\right)\right|^{2} w(t, s) \md t \md s, \label{quan: dependence}
+\end{IEEEeqnarray}
+where $\mathbf{Z} = (Z_1, Z_2)$, $G_{ts} = tG_1(Z_1) + sG_2(Z_2)$ and $w$ is a weight function such that $\mathcal{R}_w < +\infty$.
+\begin{problem}
+	Can we extend $\mathcal{R}_w$ beyond $d = 1$? How to choose the weight function $w$?
+\end{problem}
+For the first problem, we only need to replace $G_1$ and $G_2$ with the population multivariate ranks. For the second one, we will borrow the weight function used in the \textit{distance covariance}.
+\begin{definition}
+	Suppose that $\mathbf{Z}_1 \sim \mu_1 \in \mathcal{P}_{ac}(\mathbb{R}^{d_1})$ and $\mathbf{Z}_2 \sim \mu_2 \in \mathcal{P}_{ac}(\mathbb{R}^{d_2})$. Let $\mathbf{R}_1(\cdots)$ and $\mathbf{R}_2$ denote the corresponding population rank maps. We define the rank distance covariance (RdCov$^2$) as 
+	\begin{IEEEeqnarray}{rCl}
+		\begin{aligned}
+			&\operatorname{Rd} \operatorname{Cov}^{2}\left(\mathbf{Z}_{1}, \mathbf{Z}_{2}\right):=\int_{\mathbb{R}^{d_{1}+d_{2}}} \\
+			&\times \frac{\left|\Expe \exp \left(i \mathbf{R}_{\mathbf{t}, \mathbf{s}}(\mathbf{Z})\right)-\Expe \exp \left(i \mathbf{t}^{\top} \mathbf{R}_{1}\left(\mathbf{Z}_{1}\right)\right) \Expe \exp \left(i \mathbf{s}^{\top} \mathbf{R}_{2}\left(\mathbf{Z}_{2}\right)\right)\right|^{2}}{c\left(d_{1}\right) c\left(d_{2}\right)\|\mathbf{t}\|^{1+d_{1}}\|\mathbf{s}\|^{1+d_{2}}} \\
+			&\times \md \mathbf{t} \md \mathbf{s}.
+		\end{aligned}
+	\end{IEEEeqnarray}
+\end{definition}
+\begin{remark}
+	Suppose that $\left(\mathbf{Z}_{1}^{1}, \mathbf{Z}_{2}^{1}\right),\left(\mathbf{Z}_{1}^{2}, \mathbf{Z}_{2}^{2}\right),\left(\mathbf{Z}_{1}^{3}, \mathbf{Z}_{2}^{3}\right)$ are independent observations having the same distribution as $\left(\mathbf{Z}_{1}^{1}, \mathbf{Z}_{2}^{1}\right)$. Then, we have alternative definition
+	\begin{IEEEeqnarray}{rCl}
+			&& \mathrm{RdCov}^{2}\left(\mathbf{Z}_{1}, \mathbf{Z}_{2}\right) \nonumber \\
+			&= & \Expe\left[\left\|\mathbf{R}_{1}\left(\mathbf{Z}_{1}^{1}\right)-\mathbf{R}_{1}\left(\mathbf{Z}_{1}^{2}\right)\right\|\left\|\mathbf{R}_{2}\left(\mathbf{Z}_{2}^{1}\right)-\mathbf{R}_{2}\left(\mathbf{Z}_{2}^{2}\right)\right\|\right] \nonumber \\
+			&  + &\Expe\left[\left\|\mathbf{R}_{1}\left(\mathbf{Z}_{1}^{1}\right)-\mathbf{R}_{1}\left(\mathbf{Z}_{1}^{2}\right)\right\|\right] \Expe\left[\left\|\mathbf{R}_{2}\left(\mathbf{Z}_{2}^{1}\right)-\mathbf{R}_{2}\left(\mathbf{Z}_{2}^{2}\right)\right\|\right] \nonumber \\
+			&  - &2 \Expe\left[\left\|\mathbf{R}_{1}\left(\mathbf{Z}_{1}^{1}\right)-\mathbf{R}_{1}\left(\mathbf{Z}_{1}^{2}\right)\right\|\left\|\mathbf{R}_{2}\left(\mathbf{Z}_{2}^{1}\right)-\mathbf{R}_{2}\left(\mathbf{Z}_{2}^{3}\right)\right\|\right] \label{quan: RdCovdef2} 
+	\end{IEEEeqnarray}
+\end{remark}
+\begin{remark}
+	Unlike the distance covariance, (\ref{quan: RdCovdef2}) does not require any moment assumptions on $\mathbf{Z}_1$ and $\mathbf{Z}_2$.
+\end{remark}
+
+\noindent\textcolor{violet}{\textbf{Part II: Test procedure}}
+
+Suppose that $(\mathbf{X}_1, \mathbf{Y_1}), \dots, (\mathbf{X}_n, \mathbf{Y_n})$ are iid observations from some distribution $\mu \in \mathcal{P}(\mathbb{R}^{d_1 + d_2})$ with marginals $\mu_{\mathbf{X}}$ and $\mu_{\mathbf{Y}}$. We are interested in testing the hypothesis: $H_0: \mu = \mu_{\mathbf{X}} \otimes \mu_{\mathbf{Y}}$. The author proposed a procedure that is exactly distribution-free and guarantees consistency against all fixed alternatives based on the rank distance covariance. 
+
+We consider the empirical version of (\ref{quan: RdCovdef2}) as 
+\begin{IEEEeqnarray}{rCl}
+	\mathrm{RdCov}_{n}^{2}& := &S_{1}+S_{2}-2 S_{3}, \nonumber
+\end{IEEEeqnarray}
+where
+\begin{IEEEeqnarray}{rCl}
+		S_{1}&:=&\frac{1}{n^{2}} \sum_{k, l=1}^{n}\left\|\widehat{R}_{n}^{\mathbf{X}}\left(\mathbf{X}_{k}\right)-\widehat{R}_{n}^{\mathbf{X}}\left(\mathbf{X}_{l}\right)\right\|\left\|\widehat{R}_{n}^{\mathbf{Y}}\left(\mathbf{Y}_{k}\right)-\widehat{R}_{n}^{\mathbf{Y}}\left(\mathbf{Y}_{l}\right)\right\| \nonumber\\
+		S_{2}&:=&\left(\frac{1}{n^{2}} \sum_{k, l=1}^{n}\left\|\widehat{R}_{n}^{\mathbf{X}}\left(\mathbf{X}_{k}\right)-\widehat{R}_{n}^{\mathbf{X}}\left(\mathbf{X}_{l}\right)\right\|\right) \times\left(\frac{1}{n^{2}} \sum_{k, l=1}^{n}\left\|\widehat{R}_{n}^{\mathbf{Y}}\left(\mathbf{Y}_{k}\right)-\widehat{R}_{n}^{\mathbf{Y}}\left(\mathbf{Y}_{l}\right)\right\|\right) \nonumber \\
+		S_{3}&:=&\frac{1}{n^{3}} \sum_{k, l, m=1}^{n}\left\|\widehat{R}_{n}^{\mathbf{X}}\left(\mathbf{X}_{k}\right)-\widehat{R}_{n}^{\mathbf{X}}\left(\mathbf{X}_{l}\right)\right\|\left\|\widehat{R}_{n}^{\mathbf{Y}}\left(\mathbf{Y}_{k}\right)-\widehat{R}_{n}^{\mathbf{Y}}\left(\mathbf{Y}_{m}\right)\right\| \nonumber
+\end{IEEEeqnarray}
+\begin{problem}
+	\begin{itemize}
+		\item[(a)] What is the limiting distribution of the test statistic?
+		\item[(b)] Is the test consistent against all fixed alternatives, as the sample size grows?
+	\end{itemize}
+\end{problem}
+\begin{theorem}\label{th: ld}
+	We assume 
+	\begin{itemize}
+		\item[(1)] $\mu_{\mathbf{X}} \in \mathcal{P}_{ac}(\mathbb{R}^{d_1})$ and $\mu_{\mathbf{Y}} \in \mathcal{P}_{ac}(\mathbb{R}^{d_2})$
+		\item[(2)] The empirical distribution of $\mathcal{H}_n^{d_1}$ and $\mathcal{H}_n^{d_2}$ converge weakly to $\mathcal{U}^{d_1}$ and $U^{d_2}$, respectively.
+	\end{itemize}
+	Then under the null hypothesis, there exists universal nonnegative constants $(\eta_1, \eta_, \dots)$ such that 
+	\[
+	n\text{RdCov}_n^2 \stackrel{w}\to\sum_{j=1}^{\infty} \eta_{j} Z_{j}^{2}, \quad \ \text{as} \ n \to +\infty,
+	\]
+	where $Z_1, Z_2, \dots$ are iid standard Gaussian random variables. 
+\end{theorem}
+
+\begin{theorem}
+	Under the same assumptions in Theorem \ref{th: ld}, $\text{RdCov}^2_n \stackrel{a.s.}\to \text{RdCov}^2(\mathbf{X}, \mathbf{Y})$, where $(\mathbf{X}, \mathbf{Y}) \sim \mu$. Moreover, $\Prob\left(n\text{RdCov}^2_n \geq c_n\right) \to 1,$ as $n \to +\infty,$ provided $\mu \neq \mu_{\mathbf{X}} \otimes \mu_{\mathbf{Y}}$.
+\end{theorem}

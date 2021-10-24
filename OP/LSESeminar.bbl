@@ -1,0 +1,64 @@
+\begin{thebibliography}{9}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Brenier(1991)]{brenier1991polar}
+Yann Brenier.
+\newblock Polar factorization and monotone rearrangement of vector-valued
+  functions.
+\newblock \emph{Communications on pure and applied mathematics}, 44\penalty0
+  (4):\penalty0 375--417, 1991.
+
+\bibitem[Chernozhukov et~al.(2017)Chernozhukov, Galichon, Hallin, and
+  Henry]{chernozhukov2017monge}
+Victor Chernozhukov, Alfred Galichon, Marc Hallin, and Marc Henry.
+\newblock Monge--kantorovich depth, quantiles, ranks and signs.
+\newblock \emph{The Annals of Statistics}, 45\penalty0 (1):\penalty0 223--256,
+  2017.
+
+\bibitem[Evans(1997)]{evans1997partial}
+Lawrence~C Evans.
+\newblock Partial differential equations and monge-kantorovich mass transfer.
+\newblock \emph{Current developments in mathematics}, 1997\penalty0
+  (1):\penalty0 65--126, 1997.
+
+\bibitem[Liu(1990)]{liu1990notion}
+Regina~Y Liu.
+\newblock On a notion of data depth based on random simplices.
+\newblock \emph{The Annals of Statistics}, pages 405--414, 1990.
+
+\bibitem[McCann(1995)]{mccann1995existence}
+Robert~J McCann.
+\newblock Existence and uniqueness of monotone measure-preserving maps.
+\newblock \emph{Duke Mathematical Journal}, 80\penalty0 (2):\penalty0 309--323,
+  1995.
+
+\bibitem[Miller et~al.(2003)Miller, Ramaswami, Rousseeuw, Sellares, Souvaine,
+  Streinu, and Struyf]{miller2003efficient}
+Kim Miller, Suneeta Ramaswami, Peter Rousseeuw, J~Antoni Sellares, Diane
+  Souvaine, Ileana Streinu, and Anja Struyf.
+\newblock Efficient computation of location depth contours by methods of
+  computational geometry.
+\newblock \emph{Statistics and Computing}, 13\penalty0 (2):\penalty0 153--162,
+  2003.
+
+\bibitem[Tukey(1975)]{tukey1975mathematics}
+John~W Tukey.
+\newblock Mathematics and the picturing of data.
+\newblock In \emph{Proceedings of the International Congress of Mathematicians,
+  Vancouver, 1975}, volume~2, pages 523--531, 1975.
+
+\bibitem[Villani(2021)]{villani2021topics}
+C{\'e}dric Villani.
+\newblock \emph{Topics in optimal transportation}, volume~58.
+\newblock American Mathematical Soc., 2021.
+
+\bibitem[Zuo and Serfling(2000)]{zuo2000general}
+Yijun Zuo and Robert Serfling.
+\newblock General notions of statistical depth function.
+\newblock \emph{Annals of statistics}, pages 461--482, 2000.
+
+\end{thebibliography}

@@ -1,0 +1,188 @@
+\chapter{Monge-Kantorovich Depth, Quantiles, Ranks and Signs (Chernozhukov et al. 2017)}
+\section{Motivation}
+\faQuoteLeft  An important feature of halfspace depth is the convexity of its contours, which thus satisfy the star-convexity requirement embodied in the linear monotonicity axiom. That feature is shared by most existing depth concepts and might be considered undesirable for distributions with non-convex supports or level contours, and multi-modal ones \faQuoteRight 
+
+\section{Idea}
+\textbf{Case 1: Univariate Distribution Family $\mathcal{P}^1$.}
+
+The first case is that of the family $\mathcal{P}^1$ of all univariate distributions with non-vanishing Lebesgue densities. Here, the definition of quantile and distribution function, ranks and signs are the "\textcolor{magenta}{classical}" univariate ones.
+
+\noindent\textbf{Case 2: Elliptical Distribution Family $\mathcal{P}_{ell}^d$ over $\mathbb{R}^d$.}
+
+Let $X \sim P_{\mu, \Sigma, g} \in \mathcal{P}_{ell}^d$, where $\mu$ and $\Sigma$ are location parameter and scatter parameter respectively, and $g$ is radial density (with radial distribution $G$). Then the following are equivalent:
+\[
+X \sim P_{\mu, \Sigma, g} \iff Y \triangleq \Sigma^{-1/2}(X - \mu) \sim P_{0, I, g} \iff R_P(Y) \triangleq \frac{Y}{||Y||}G(||Y||) \sim U_d,
+\]
+where $U_d$ denotes the spherical uniform distribution (RP: $U_d = r\phi$, $r \independent \phi$). 
+\begin{itemize}
+	\item Note that the spherical contours with $P_{\mu, I, g}$-probability contents $\tau$ coincide with the halfspace depth contours. 
+	\item Thus we can naturally define a \textit{$\tau$-quantile contour} as the contour of the depth region with probability content at least $\tau$ (contour of equal depth of $\tau$). 
+	\item $R_p(Y)$, $R_p(Y)/||R_p(Y)||$ and $||R_p(Y)||$ play the roles of \textit{vector ranks, signs and ranks}, respectively. 
+	\item The inverse map $u \longrightarrow Q_P(u)$ of the vector rank map $y \longrightarrow R_P(y)$ is called \textit{vector quantile} map 
+\end{itemize}
+
+\begin{remark}
+	Take a closer look at the case, we can observe that the \textit{$\tau$-quantile contour} (contour of the depth region with probability content $\tau$) is $Q_P(\mathcal{S}(\tau))$, while \textit{the depth region with probability content} $\tau$ is $Q_P(\mathbb{S}(\tau))$.
+\end{remark}
+
+\noindent\textbf{\textcolor{magenta}{Case 3: General Distribution $P$ over $\mathbb{R}^d$}.}
+
+From the insights we gained through the traditional cases, for general distribution $P$ over $\mathbb{R}^d$, we also want to define a map $Q_P$ that transform the spherical uniform distribution $U_d$ into the target distribution. The following theorem due to \cite{brenier1991polar} and \cite{mccann1995existence} guarantees the existence of such map.
+
+\section{Definition of MK Depth, Quantiles, Ranks and Signs}
+\subsection{Step 1: Find an optimal transport}
+\begin{theorem}\label{th: existence}
+	Let $P$ and $F$ be two distributions on $\mathbb{R}^d$.
+	\begin{enumerate}
+		\item[(1)] If $F$ is absolutely continous with respect to the Lebesgue measure on $\mathbb{R}^d$, the following holds: for any convex set $\mathcal{U} \subset \mathbb{R}^d$ containing the support of $F$, there exists a convex function $\psi: \mathcal{U} \longrightarrow \mathbb{R}\cup\{+\infty\}$ such that $\nabla\psi \# F = P$. The gradient $\nabla\psi$ of that function exists and unique, $F$-a.e.
+		\item[(2)]If, in addition, $P$ is absolutely continous on $\mathbb{R}^d$ the following holds: for any convex set $\mathcal{Y} \subset \mathbb{R}^d$ containing the support of $P$, there exists a convex function $\psi^*: \mathcal{Y} \longrightarrow \mathbb{R}\cup\{+\infty\}$ such that $\nabla\psi^* \# P = F$. The gradient $\nabla\psi^*$ of $\psi^*$ exists and unique, and $\nabla\psi^* = \nabla\psi^{-1}$, $P$-a.e.
+	\end{enumerate}
+\end{theorem}
+\begin{remark}
+	Note that although $\psi$ and $\psi^*$ may not be unique, the map $\nabla\psi$ and $\nabla\psi^*$ is unique a.e.
+\end{remark}
+We will see that if $P$ and $F$ have \textcolor{magenta}{finite second moments}, then $\nabla\psi$ is an \textcolor{magenta}{optimal transport plan} from $F$ to $P$ under \textit{quadratic cost}. That is, 
+\begin{IEEEeqnarray}{rCl}
+	\nabla\psi & = & \arg\inf_{Q \# F = P}\int (u - Q(u))^2 \md F(y) \label{eq: QuadOP}
+\end{IEEEeqnarray}
+
+
+The following proposition will help us to establish a dual problem of (\ref{eq: QuadOP}).
+\begin{proposition}
+	If $\mu$ and $\nu$ be two probability measures on $\mathbb{R}^d$ with \textcolor{magenta}{finite seond moments}, then (\ref{eq: kantDual}) with quadratic cost becomes
+	\begin{IEEEeqnarray}{rCl}
+		\sup_{ \Pi(\mu, \nu)}\int (x \cdot y) \md \pi(x, y) = \inf_{\tilde{\Phi}}J(\phi, \psi), \label{eq: quaddual}
+	\end{IEEEeqnarray}
+where $\tilde{\Phi} = \{(\phi, \psi) \in L^1(\md\mu) \times L^1(\md\nu): x \cdot y \leq \phi(x) + \psi(y) \ a.e. \}$.
+\end{proposition}
+\begin{proof}
+	From the definition of $\Phi_C$, we have for any $(\phi, \psi) \in \Phi_C$,
+	\begin{IEEEeqnarray}{rCl}
+		\phi(x) + \psi(y) \leq \frac{|x - y|^2}{2}, \nonumber
+	\end{IEEEeqnarray}
+	this can be rewritten as
+	\begin{IEEEeqnarray}{rCl}
+		x \cdot y \leq\left[\frac{|x|^{2}}{2}-\phi(x)\right]+\left[\frac{|y|^{2}}{2}-\psi(y)\right] \nonumber.
+	\end{IEEEeqnarray}
+	If we define
+	\begin{IEEEeqnarray}{rCl}
+		\widetilde{\phi}(x)=\frac{|x|^{2}}{2}-\phi(x), \quad \widetilde{\psi}(y)=\frac{|y|^{2}}{2}-\psi(y) \nonumber,
+	\end{IEEEeqnarray}
+	and forget about the $\sim$ symbol, then we can see
+	\begin{IEEEeqnarray}{rCl}
+		\inf_{\Pi(\mu, \nu)}I[\pi] & = & M_{2} -\sup_{\Pi(\mu, \nu)}\int (x \cdot y) d \pi(x, y) \label{eq: quaddual1} \\
+		\sup_{\Phi_c}J(\phi, \psi) & = & M_2 - \inf_{\tilde{\Phi}}J(\phi, \psi) \label{eq: quaddual2},
+	\end{IEEEeqnarray}
+	where $M_{2}\triangleq\int_{\mathbb{R}^{n}} \frac{|x|^{2}}{2} d \mu(x)+\int_{\mathbb{R}^{n}} \frac{|y|^{2}}{2} d \nu(y)<+\infty$. Thus from (\ref{eq: quaddual1}) and (\ref{eq: quaddual2}) we obtained (\ref{eq: quaddual}).
+\end{proof}
+
+\begin{definition}
+	For any function $\psi: \mathcal{U} \longrightarrow \mathbb{R}\bigcup\{+\infty\}$, the \textit{\textcolor{magenta}{conjugate}} $\psi^*: \mathcal{Y} \longrightarrow \mathbb{R}\bigcup\{+\infty\}$ of $\psi$ is defined as
+	\begin{IEEEeqnarray}{rCl}
+		\psi^{*}(y)&\triangleq&\sup _{u \in \mathcal{U}}\left[u \cdot y-\psi(u)\right], \ y \in \mathcal{Y} \label{eq: Legendre}.
+	\end{IEEEeqnarray}
+	Call $(\psi, \psi^*)$ \textit{\textcolor{magenta}{conjugate pair of patentials}} over $(\mathcal{U}, \mathcal{Y})$.
+\end{definition}
+\begin{remark}
+	The transformation in (\ref{eq: Legendre}) is called \textcolor{magenta}{\bf Legendre Transformation}. From the definition we can see that any $(\psi, \psi^*) \in \tilde{\Phi}$. It can be proved that if $\psi$ is differential and strict convex, we have 
+	\begin{IEEEeqnarray}{rCl}
+		\nabla\psi^* = (\nabla\psi)^{-1} \label{eq: inverse},
+	\end{IEEEeqnarray}
+	the proof can be found at the Wikipedia page of Legendre Transformation. 
+\end{remark}
+
+The following theorem states that the infimum of $J$ on $\tilde{\Phi}$ is unchanged if one restricts $J$ to the very small subset of $\tilde{\Phi}$ which is made of all the conjugate pairs.
+
+\begin{theorem}\label{th: dualOP}
+	Let $\mu$, $\nu$ be two "proper" probability measures on $\mathbb{R}^n$, with finite second moments.
+	\begin{itemize}
+		\item[(i)] Then there exists a pair $(\psi, \psi^*)$ of lower semi-continuous propoer conjugate convex function on $\mathbb{R}^n$ such that 
+		\begin{IEEEeqnarray}{rCl}
+			\inf_{\tilde{\Phi}}J & = & J(\psi, \psi^*); \label{eq: psi}
+		\end{IEEEeqnarray}
+		\item[(ii)] $\nabla\psi$ and $\nabla\psi^*$ are the unique solutions of the Monge problem for transport $\mu$ to $\nu$ and transport $\nu$ to $\mu$ with a quadratic cost function, respectively;
+		\item[(iii)] according to (\ref{eq: inverse}), for $\md \mu$-almost all $x$ and $\md \nu$-almost all $y$,
+		\begin{IEEEeqnarray}{rCl}
+			\nabla \psi^* \circ \nabla \psi (x) & = & x \nonumber \\
+			\nabla \psi \circ \nabla \psi^* (y) & = & y \nonumber
+		\end{IEEEeqnarray} 
+	\end{itemize}
+\end{theorem}
+\begin{remark}
+	From this theorem, we know 
+	\begin{itemize}
+		\item[(i)] where do the $\nabla\psi$ and $\nabla\psi^*$ in Theorem \ref{th: existence} come from and how to calculate them;
+		\item[(ii)] if $P$ and $F$ in Theorem \ref{th: existence} have finite second moment condition, then $\nabla\psi$ and $\nabla\psi^*$ are optimal transport under quadratic cost function. 
+		\item[(iii)] why the gradient $\nabla\psi^*$ is the inverse of $\nabla \psi$.
+	\end{itemize}
+\end{remark}
+%
+%The following theorem, refer to \cite{villani2021topics}, proves that the $\nabla\psi$ in the Theorem \ref{th: dualOP} is the unique optimal transport map from $F$ to $P$ for quadratic cost.
+%
+%\begin{theorem}
+%	Suppose hypothesis (1) of Theorem \ref{th: existence} holds and $P$ and $F$ have finit second moments: then the conjugate pair of potentials $(\nabla\psi, \nabla\psi^*)$ solves the optimization problem $\inf_{\tilde{\Phi}}J$ in (\ref{eq: quaddual}).
+%\end{theorem}
+
+\subsection{Step 2: Define MK vector quantiels and vector ranks}
+To define a multivariate rank on the interest distribution $P$ based on the reference distribution $F$, we only need to find the unique transport $R_P$ from $P$ to $F$, and the corresponding inverse transport $Q_P$ will naturally lead to the definition of quantile function.
+\begin{definition}
+	Denote by $\nabla\psi$ the $F$-almost surely unique gradient of a convex function $\psi$ in (1) of Theorem \ref{th: existence}, and let $\psi^*$ be the conjugate of $\psi$. Then we define \textit{\textcolor{magenta}{vector quantile}} $Q_P$ and \textit{\textcolor{magenta}{vector ranks}} $R_P$ as 
+	\begin{IEEEeqnarray}{rCl}
+			\mathrm{Q}_{P}(u) &\in& \arg \sup _{y \in \mathcal{Y}}\left[y^{\top} u-\psi^{*}(y)\right], \quad u \in \mathcal{U} \nonumber \\
+			\mathrm{R}_{P}(y) &\in& \arg \sup _{u \in \mathcal{U}}\left[y^{\top} u-\psi(u)\right], \quad y \in \mathbb{R}^{d} \nonumber
+	\end{IEEEeqnarray}
+\end{definition}
+\begin{remark}
+	By the evelope theorem and Rademacher's theorem (see \cite{villani2021topics}), we have 
+	\begin{align}
+			\mathrm{Q}_{P}=\nabla \psi  \text { a.e. on } \mathcal{U}, \quad \mathrm{R}_{P}=\nabla \psi^{*}  \text { a.e. on } \mathcal{Y} \notag,
+	\end{align}
+	and the under some regularity conditions the "a.e." can become "for all". 
+\end{remark}
+
+\subsection{Step 3: Define MK depth, quantiles, rankds and signs}
+Let's take $F = U_d$ and $P$ be an arbitriary distribution to deliver the multivariate notion of quantiles and ranks through $R_P$ and $Q_P$.
+\begin{definition}
+	\begin{enumerate}
+		\item[(1)] The MK rank of $y \in \mathbb{R}^d$ is $||R_P(y)||$ and the MK sign is $R_P(y)/||R_P(y)||$.
+		\item[(2)] The MK $\tau$-quantile contour is the set $Q_P(\mathcal{S}(\tau))$, and the MK depth region with probability content $\tau$ is $Q_P(\mathbb{S}(\tau))$.
+		\item[(3)] The MK depth of $y \in \mathbb{R}^d$ with respect to $P$ is the depth of $R_P(y)$ under $D_P^{Tukey}$:
+		\[
+		\mathrm{D}_{P}^{\mathrm{MK}}(y):=\mathrm{D}_{U_{d}}^{\text {Tukey }}\left(\mathrm{R}_{P}(y)\right)
+		\]
+	\end{enumerate}
+\end{definition}
+
+\section{Empirical Depth, Ranks and Quantiles}
+Now, we are ready to discuss the empirical version of MK quantiles, rankds and depth based on estimator $\hat{P}_n$ for $P$ and $\hat{F}_n$ for $F$.
+\subsection{Empirical vector quantiles and ranks}
+\begin{definition}
+	The empirical vector quantile $\hat{Q}_n$ and vector rank $\hat{R}_n$ are any pair of functions satisfying, for each $u \in \mathcal{U}$ and $y \in \mathcal{Y}$ 
+	\begin{IEEEeqnarray}{rCl}
+		\hat{Q}_n &\in& \arg\sup\limits_{y \in \mathcal{Y}}\left[y^\top u - \hat{\psi}^*_n(y)\right], \nonumber \\
+		\hat{R}_n &\in& \arg\sup\limits_{u \in \mathcal{U}}\left[y^\top u - \hat{\psi}_n(u)\right], \nonumber 
+	\end{IEEEeqnarray}
+where $\hat{\psi}^*_n(y)$ and $\hat{\psi}_n(u)$ is the empirical counterpart of (\ref{eq: psi}).
+\end{definition}
+
+Now, we introduce a Glivenko-Cantelli Theorem (\textit{\textcolor{magenta}{uniform} convergence}) for empirical MK ranks and quantiles.
+
+\begin{theorem}\label{eq: G-C}
+	Suppose that the sets $\mathcal{U}$ and $\mathcal{Y}$ are two compact subsets of $\mathbb{R}^d$, and the probability measure $P$ and $F$ are absolutely continous with respective to Lebesgue measure, with $\spt(P) \subset \mathcal{Y}$ and $\spt(F) \subset \mathcal{U}$. Then, as $n \to \infty$, for any closed set $K \subset \mathrm{int}(\sup(P))$ and any closed set $K^\prime \subset \mathrm{int}(\sup(F)) $,
+	\begin{IEEEeqnarray}{rCl}
+		\sup\limits_{u \in K}||\hat{Q}_n(y) - Q_P(u)|| &\stackrel{P}\to& 0, \nonumber \\
+		\sup\limits_{y \in K^\prime}||\hat{R}_n(y) - R_P(y)|| &\stackrel{P}\to& 0 \nonumber.
+	\end{IEEEeqnarray}                                                                                                                    
+\end{theorem}
+\begin{remark}
+	Although Theorem \ref{eq: G-C} gives us a Glivenko-Cantelli consistency, the compactly supported distributions assumption is a relatively strong assumption, which makes it not exact distribution free. 
+\end{remark}
+
+
+
+
+
+
+
+
+
