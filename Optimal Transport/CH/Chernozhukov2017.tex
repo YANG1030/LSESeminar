@@ -42,10 +42,12 @@ From the insights we gained through the traditional cases, for general distribut
 	Note that although $\psi$ and $\psi^*$ may not be unique, the map $\nabla\psi$ and $\nabla\psi^*$ is unique a.e.
 \end{remark}
 We will see that if $P$ and $F$ have \textcolor{magenta}{finite second moments}, then $\nabla\psi$ is an \textcolor{magenta}{optimal transport plan} from $F$ to $P$ under \textit{quadratic cost}. That is, 
+%\begin{IEEEeqnarray}{rCl}
+%	\nabla\psi & = & \arg\inf_{\pi \in \Pi(F, P)}\int ||x - y||^2 \md \pi(x, y) \label{eq: QuadOP}
+%\end{IEEEeqnarray}
 \begin{IEEEeqnarray}{rCl}
 	\nabla\psi & = & \arg\inf_{Q \# F = P}\int (u - Q(u))^2 \md F(y) \label{eq: QuadOP}
 \end{IEEEeqnarray}
-
 
 The following proposition will help us to establish a dual problem of (\ref{eq: QuadOP}).
 \begin{proposition}
@@ -165,7 +167,7 @@ Now, we are ready to discuss the empirical version of MK quantiles, rankds and d
 where $\hat{\psi}^*_n(y)$ and $\hat{\psi}_n(u)$ is the empirical counterpart of (\ref{eq: psi}).
 \end{definition}
 
-Now, we introduce a Glivenko-Cantelli Theorem (\textit{\textcolor{magenta}{uniform} convergence}) for empirical MK ranks and quantiles.
+Now, we introduce a Glivenko-Cantelli Theorem for empirical MK ranks and quantiles.
 
 \begin{theorem}\label{eq: G-C}
 	Suppose that the sets $\mathcal{U}$ and $\mathcal{Y}$ are two compact subsets of $\mathbb{R}^d$, and the probability measure $P$ and $F$ are absolutely continous with respective to Lebesgue measure, with $\spt(P) \subset \mathcal{Y}$ and $\spt(F) \subset \mathcal{U}$. Then, as $n \to \infty$, for any closed set $K \subset \mathrm{int}(\sup(P))$ and any closed set $K^\prime \subset \mathrm{int}(\sup(F)) $,
@@ -175,7 +177,9 @@ Now, we introduce a Glivenko-Cantelli Theorem (\textit{\textcolor{magenta}{unifo
 	\end{IEEEeqnarray}                                                                                                                    
 \end{theorem}
 \begin{remark}
-	Although Theorem \ref{eq: G-C} gives us a Glivenko-Cantelli consistency, the compactly supported distributions assumption is a relatively strong assumption, which makes it not exact distribution free. 
+	Recall that the Glivenko-Contelli class is usually insensitive to the continuous order-preserving transformation of the data, but this feature is not compatible with the moment assumption, since the existence of moment can not be guaranteed under such transformation. Thus, the compact support assumption in Theorem \ref{eq: G-C} is inappropriate.
+	
+	Moreover, the compact support assumption also makes the test procedures that based on this rank definition not exactly distribution-free, which leads to a restriction of usage. 
 \end{remark}
 
 

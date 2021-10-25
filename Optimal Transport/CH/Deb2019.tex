@@ -1,6 +1,5 @@
 \chapter{Optimal Transport and Its Application on Statistical Methods (Deb et al. 2021)}
-\section{Motivation}
-Based on \cite{chernozhukov2017monge} 
+
 \section{Contributions}
 The main contributions in this work are listed as followed:
 \begin{enumerate}
@@ -13,6 +12,13 @@ The main contributions in this work are listed as followed:
 The pioneering work of \cite{chernozhukov2017monge} has developed novel difinitions of multivariate rank and quantile based on the mathematical solution for \textit{Kantorovich's Problem}. However, from the statistical perspective, we usually only care about the measure transportation between the empirical distribution and the empirical rank distribution, which will lead to a Monge's Problem. Thus the measure transportation can be thought as an assignment problem instead. 
 
 \subsection{Population rank and quantile}
+
+\begin{definition}
+	Set $\nu = \mathcal{U}^d.$ Given a measure $\mu \in \mathcal{P}_{ac}(\mathbb{R}^d)$, the corresponding population rank $\mathbf{R}(\cdot)$ and quantile maps $\mathbf{Q}(\cdot)$ are defined as in Theorem \ref{th: existence}.
+\end{definition}
+\begin{remark}
+	For this notion of population ranks, the following interesting property holds: the joint measure splitting into product of marginals is equivalent to the joint rank map splitting component-wise into marginal rank maps. 
+\end{remark}
 
 \subsection{Empirical rank and quantile}
 In standard statistical applications, the population rank map is not available to the practitioner. Thus, given iid random samples $\mathcal{D}_n^X :=\{\bf{X}_1, \dots, \bf{X}_n\}$, and let $ \mathcal{H}_n^d:=\{\bf{h}_1^d, \dots, \bf{h}_n^d\}$ denote the fixed set of sample \textit{multivariate rank vectors}. In practice, we may take $\mathcal{H}_n^d$ to be the $d$-dimensional {\bf Halton sequence} of size $n$. Let $\mu_n^{\bf{X}}$ and $\nu_n$ denote the empirical distribution of $\mathcal{D}_n^X$ and $\mathcal{H}_n^d$, respectively. 
@@ -38,14 +44,14 @@ Based on (\ref{eq: assignment}), observe that the sample rank map $\hat{\bf R}_n
 \hat{\bf R}_n({\bf X}_i) = \mathbf{h}^d_{\hat{\sigma}_n(i)},  \quad \ \text{for } \ i = 1, \dots, n,
 \]
 and the following theorem shows that the sample rank map converges to its population counterpart under minimal assumptions. 
-\begin{theorem}
+\begin{theorem}\label{th: P-C}
 	Assume $\mathbf{X}_1, \dots, \mathbf{X}_n \stackrel{iid}\sim \mu \in \mathcal{P}_{ac}^d$, and $\nu_n \stackrel{w}\to \mathcal{U}^d$, then
 	\begin{IEEEeqnarray}{rCl}
 		\frac{1}{n}\sum_{i = 1}^n ||\hat{\bf R}_n({\bf X}_i) - {\bf R}_n({\bf X}_i)||_{2}^2 \stackrel{a.s.}\to 0 \nonumber
 	\end{IEEEeqnarray}
 \end{theorem}
 \begin{remark}
-	
+	Although pointwise convergence is weaker than uniform convergence, but the assumption in Theorem \ref{th: P-C} is minimal.
 \end{remark}
 
 \section{Multivariate Rank-Based Nonparametric Testing}
